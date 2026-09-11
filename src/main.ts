@@ -6,6 +6,9 @@ import { createHouse } from './houses'
 import { houseLayout, houseTerrace, isHouseReserved } from './house-layout'
 import { createFantasySky } from './sky'
 
+// 静态模型位于 public/models；使用 Vite 的基础路径以兼容 GitHub Pages 子路径部署。
+const modelBaseUrl = `${import.meta.env.BASE_URL}models/`
+
 // 场景是所有 3D 物体的容器。
 const scene = new THREE.Scene()
 // 天空和雾使用相近的浅蓝色，形成轻微空气透视而不是生硬的纯色背景。
@@ -498,7 +501,7 @@ function updateCharacterPosition() {
 
 const gltfLoader = new GLTFLoader()
 gltfLoader.load(
-  '/models/player.glb',
+  `${modelBaseUrl}player.glb`,
   (gltf) => {
     character = gltf.scene
 
@@ -542,7 +545,7 @@ gltfLoader.load(
   },
   undefined,
   (error) => {
-    console.error('Could not load player model from /models/player.glb:', error)
+    console.error(`Could not load player model from ${modelBaseUrl}player.glb:`, error)
   },
 )
 
@@ -639,7 +642,7 @@ function createAnimal(
 
 function loadAnimalAsset(definition: AnimalDefinition) {
   gltfLoader.load(
-    `/models/animals/${definition.file}`,
+    `${modelBaseUrl}animals/${definition.file}`,
     (gltf) => {
       console.log(gltf.animations.map((animation) => animation.name))
 
@@ -652,7 +655,7 @@ function loadAnimalAsset(definition: AnimalDefinition) {
     },
     undefined,
     (error) => {
-      console.error(`Could not load ${definition.label} model from /models/animals/${definition.file}:`, error)
+      console.error(`Could not load ${definition.label} model from ${modelBaseUrl}animals/${definition.file}:`, error)
     },
   )
 }
@@ -805,7 +808,7 @@ spawnCoins()
 
 const coinLoader = new GLTFLoader()
 coinLoader.load(
-  '/models/coin.glb',
+  `${modelBaseUrl}coin.glb`,
   (gltf) => {
     coinTemplate = gltf.scene
 
@@ -822,7 +825,7 @@ coinLoader.load(
   },
   undefined,
   (error) => {
-    console.error('Could not load coin model from /models/coin.glb:', error)
+    console.error(`Could not load coin model from ${modelBaseUrl}coin.glb:`, error)
   },
 )
 
@@ -999,7 +1002,7 @@ const natureGrassLoader = new GLTFLoader()
 let natureGrassLoadsPending = natureGrassTestDefinitions.length
 natureGrassTestDefinitions.forEach((definition) => {
   natureGrassLoader.load(
-    `/models/nature/${definition.file}`,
+    `${modelBaseUrl}nature/${definition.file}`,
     (gltf) => {
       const sourceSize = new THREE.Box3().setFromObject(gltf.scene).getSize(new THREE.Vector3())
       const sourceHeight = sourceSize.y > 0.001 ? sourceSize.y : Math.max(sourceSize.x, sourceSize.z)
@@ -1014,7 +1017,7 @@ natureGrassTestDefinitions.forEach((definition) => {
     },
     undefined,
     (error) => {
-      console.error(`Could not load nature grass test model /models/nature/${definition.file}:`, error)
+      console.error(`Could not load nature grass test model ${modelBaseUrl}nature/${definition.file}:`, error)
       natureGrassLoadsPending -= 1
       generateHouses()
     },
@@ -1252,7 +1255,7 @@ function generateTreesForLayout() {
 
 natureTreeDefinitions.forEach((definition) => {
   gltfLoader.load(
-    `/models/nature/${definition.file}`,
+    `${modelBaseUrl}nature/${definition.file}`,
     (gltf) => {
       const sourceSize = new THREE.Box3().setFromObject(gltf.scene).getSize(new THREE.Vector3())
       const sourceHeight = sourceSize.y > 0.001 ? sourceSize.y : Math.max(sourceSize.x, sourceSize.z)
@@ -1263,7 +1266,7 @@ natureTreeDefinitions.forEach((definition) => {
     },
     undefined,
     (error) => {
-      console.error(`Could not load nature tree model /models/nature/${definition.file}:`, error)
+      console.error(`Could not load nature tree model ${modelBaseUrl}nature/${definition.file}:`, error)
     },
   )
 })
