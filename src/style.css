@@ -1,0 +1,149 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+}
+
+.status-panel {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  margin: 0;
+  padding: 10px 12px;
+  color: #f8fffa;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  white-space: pre-line;
+  background: linear-gradient(135deg, rgb(24 55 69 / 82%), rgb(30 72 60 / 78%));
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgb(20 45 54 / 24%);
+  backdrop-filter: blur(6px);
+}
+
+.status-text {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.restart-button {
+  display: inline-flex;
+  margin-top: 6px;
+  padding: 9px 15px;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  background: rgb(25 66 61 / 82%);
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 9px;
+  box-shadow: 0 8px 18px rgb(20 45 54 / 20%);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.restart-button:hover {
+  background: rgb(40 101 84 / 92%);
+}
+
+.restart-button:focus-visible {
+  outline: 3px solid #fff7c7;
+  outline-offset: 3px;
+}
+
+.house-prompt {
+  position: fixed;
+  left: 50%;
+  bottom: 9vh;
+  z-index: 12;
+  min-width: 188px;
+  padding: 20px 28px 18px;
+  color: #fff9e7;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgb(32 79 56 / 94%), rgb(20 57 47 / 94%)) padding-box,
+    linear-gradient(135deg, #b8874e, #71502f, #c89e5b) border-box;
+  border: 5px solid transparent;
+  border-radius: 17px;
+  box-shadow: 0 14px 32px rgb(12 38 30 / 38%), inset 0 0 0 2px rgb(139 191 105 / 44%);
+  transform: translateX(-50%);
+}
+
+.house-prompt::before,
+.house-prompt::after {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  content: "";
+  background: #75a957;
+  border: 3px solid #3d6a3e;
+  border-radius: 70% 30% 70% 30%;
+  box-shadow: 15px 7px 0 -4px #94be64;
+}
+
+.house-prompt::before {
+  top: -12px;
+  left: 14px;
+  transform: rotate(-32deg);
+}
+
+.house-prompt::after {
+  right: 16px;
+  bottom: -12px;
+  transform: rotate(140deg);
+}
+
+.house-prompt[hidden] {
+  display: none;
+}
+
+.house-prompt-title {
+  margin: 0 0 12px;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 5px rgb(5 30 22 / 58%);
+}
+
+.house-prompt-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.house-prompt-actions button {
+  min-width: 68px;
+  padding: 7px 14px;
+  color: #fff9e7;
+  font: inherit;
+  font-weight: 750;
+  background: rgb(92 137 73 / 94%);
+  border: 1px solid rgb(255 246 202 / 68%);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 22%), 0 3px 0 #395f3f;
+  cursor: pointer;
+}
+
+.house-prompt-actions button:last-child {
+  background: rgb(104 83 60 / 94%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%), 0 3px 0 #4a372d;
+}
+
+.house-prompt-actions button:hover {
+  filter: brightness(1.12);
+}
+
+.house-prompt-actions button:focus-visible {
+  outline: 3px solid #fff7c7;
+  outline-offset: 3px;
+}
